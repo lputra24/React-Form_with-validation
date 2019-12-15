@@ -103,14 +103,10 @@ const Form=()=>{
     return(
     <form className="loginForm">
         <input type="email" value={emailState.inputText} placeholder='example@gmail.com' onChange={(event)=>handleInputChange(event,updateEmailState)}/>
-        {/* <p>{emailState.inputText}</p> */}
         <p>{emailState.errMessage}</p>
-        {/* <FormValidation formType="EMAIL" inputText={emailState.inputText}/> */}
         <input type="password" value={passwordState.inputText} onChange={(event)=>handleInputChange(event,updatePasswordState)}/>
-        {/* <p>{passwordState.inputText}</p> */}
         <p>{passwordState.errMessage}</p>
         <input type="password" value={passwordConfirmState.inputText} onChange={(event)=>handleInputChange(event,updatePasswordConfirmState)}/>
-        {/* <p>{passwordConfirmState.inputText}</p> */}
         <p>{passwordConfirmState.errMessage}</p>
     </form>);
 };
