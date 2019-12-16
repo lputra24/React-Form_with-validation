@@ -113,12 +113,12 @@ const Form=()=>{
 
     return(
     <form className="loginForm">
-        <p>FORM VALIDATED = {formState.validated}</p>
-        <input type="email" value={emailState.inputText} placeholder='example@gmail.com' onChange={(event)=>handleInputChange(event,updateEmailState)}/>
-        <p>{emailState.errMessage}</p>
-        <input type="password" value={passwordState.inputText} onChange={(event)=>handleInputChange(event,updatePasswordState)}/>
+        {3-formState.validated>0 && <p>Field Remaining = {3-formState.validated}</p>}   
+        <input type="email" value={emailState.inputText} placeholder='Email' onChange={(event)=>handleInputChange(event,updateEmailState)}/>
+        <p>{emailState.errMessage}</p> 
+        <input type="password" value={passwordState.inputText} placeholder='Password' onChange={(event)=>handleInputChange(event,updatePasswordState)}/>
         <p>{passwordState.errMessage}</p>
-        <input type="password" value={passwordConfirmState.inputText} onChange={(event)=>handleInputChange(event,updatePasswordConfirmState)}/>
+        <input type="password" value={passwordConfirmState.inputText} placeholder='Confirm Password' onChange={(event)=>handleInputChange(event,updatePasswordConfirmState)}/>
         <p>{passwordConfirmState.errMessage}</p>
         <button type="submit" disabled={formState.validated!==3}>Submit</button>
     </form>);
