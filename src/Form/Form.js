@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react'
 import validator from 'validator'
 
 const Form=()=>{
+    
+
     const [emailState,updateEmailState]=useState({
         isValid: false,
         inputText: '',
@@ -90,6 +92,15 @@ const Form=()=>{
         }
     },[passwordConfirmState.inputText,passwordState.inputText]);
 
+    const [formState,updateFormState]=useState({
+        validated:0
+    });
+    useEffect(()=>{
+        const fieldValidated=[emailState.isValid,passwordState.isValid,passwordConfirmState.isValid].filter(state=>state).length;
+        updateFormState({validated:fieldValidated});
+    },[emailState.isValid,passwordState.isValid,passwordConfirmState.isValid]);
+    
+
     const handleInputChange=(event,updateStateFunc)=>{
         event.preventDefault();
         event.persist();
@@ -102,12 +113,14 @@ const Form=()=>{
 
     return(
     <form className="loginForm">
+        <p>FORM VALIDATED = {formState.validated}</p>
         <input type="email" value={emailState.inputText} placeholder='example@gmail.com' onChange={(event)=>handleInputChange(event,updateEmailState)}/>
         <p>{emailState.errMessage}</p>
         <input type="password" value={passwordState.inputText} onChange={(event)=>handleInputChange(event,updatePasswordState)}/>
         <p>{passwordState.errMessage}</p>
         <input type="password" value={passwordConfirmState.inputText} onChange={(event)=>handleInputChange(event,updatePasswordConfirmState)}/>
         <p>{passwordConfirmState.errMessage}</p>
+        <button type="submit" disabled={formState.validated!==3}>Submit</button>
     </form>);
 };
 
